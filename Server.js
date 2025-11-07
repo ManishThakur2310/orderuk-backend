@@ -13,10 +13,15 @@ app.use(express.json()); // Parse JSON body
 app.use(cookieParser());
 
 // ✅ Enable CORS so frontend can talk to backend
-app.use(cors({
-  origin: "http://localhost:3000",  // frontend URL (React)
-  credentials: true                 // allows cookies to be sent
-}));
+app.use(
+  cors({
+    origin: [
+      "https://orderuk-food-dilevery-application.netlify.app", // ✅ your Netlify domain
+      "http://localhost:3000" // ✅ for local testing
+    ],
+    credentials: true,
+  })
+);
 
 // ---------- Routes ----------
 app.get("/", (req, res) => {
